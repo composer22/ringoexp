@@ -1,5 +1,7 @@
 package ringbuffer
 
+// THIS MODULE IS CURRENTLY DEPRECATED.  WE MAY REINTRO LATER
+
 import (
 	"sync/atomic"
 )

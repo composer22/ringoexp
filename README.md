@@ -6,6 +6,8 @@
 
 A ring-buffer experiment written in [Go.](http://golang.org)
 
+THIS PROJECT IS A WORK IN PROGRESS AND NOT WORKING OR TESTED.
+
 ## About
 
 This is a small server that demonstrates ring-buffer usage as a means to optimize memory and processing usage.
