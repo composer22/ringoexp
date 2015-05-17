@@ -36,7 +36,8 @@ func SequencerNew(size int64, dep *Sequencer, leader bool) *Sequencer {
 		shift:      uint8(math.Log2(float64(size))),
 	}
 
-	// Init the commit map with default values.
+	// Init the cursor and commit map with default values.
+	atomic.StoreInt64(s.cursor, -1)
 	for i := range s.committed {
 		s.committed[i] = int32(SequenceDefault)
 	}

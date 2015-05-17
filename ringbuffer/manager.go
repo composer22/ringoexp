@@ -12,6 +12,7 @@ func ManagerNew(size int64) *Manager {
 		Leader:   SequencerNew(size, nil, true),
 		Follower: SequencerNew(size, nil, false),
 	}
+
 	// Set the dependencies.
 	m.Leader.SetDependency(m.Follower)
 	m.Follower.SetDependency(m.Leader)
