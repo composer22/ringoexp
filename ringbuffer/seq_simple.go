@@ -42,13 +42,11 @@ func SeqSimpleNew(size int64, dep *SeqSimple, leader bool) *SeqSimple {
 	return s
 }
 
-// Reserve returns the upper most index for a batch of cells requested by "size".
+// Reserve incrmenets and returns the upper most index for a cell to fill or read.
 func (s *SeqSimple) Reserve() int64 {
 	*s.cursor += 1
 	gate := *s.cursor - s.barrier
-
-	// Check dependency is OK to proceed, based on first cell of that series.
-	for s.dependency.committed[*s.cursor&s.mask] != int32(gate>>s.shift) {
+	for s.dependency.committed[*s.cursor&s.mask] != int32(gate>>s.shift) { // validate dependency block
 		runtime.Gosched()
 	}
 	return *s.cursor
